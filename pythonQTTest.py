@@ -11,7 +11,7 @@ class MalFeld(QtGui.QWidget):
         self.modified = False
         self.scribbling = False
         self.myPenWidth = 1
-        self.myPenColor = QtCore.Qt.blue
+        self.myPenColor = QtCore.Qt.green
         self.image = QtGui.QImage()
         self.lastPoint = QtCore.QPoint()
         
@@ -26,12 +26,9 @@ class MalFeld(QtGui.QWidget):
         painter.drawImage(event.rect(), self.image)
 
     def resizeEvent(self, event):
-        if self.width() > self.image.width() or self.height() > self.image.height():
-            newWidth = max(self.width() + 128, self.image.width())
-            newHeight = max(self.height() + 128, self.image.height())
-            self.resizeImage(self.image, QtCore.QSize(newWidth, newHeight))
-            self.update()
-
+        #if self.width() > self.image.width() or self.height() > self.image.height():
+        self.resizeImage(self.image, QtCore.QSize(self.width(), self.height()))
+        self.update()
         super(MalFeld, self).resizeEvent(event)
 
 
@@ -58,8 +55,8 @@ class MalFeld(QtGui.QWidget):
 
     def circstar(self, zack, aussenr, innenr):
         painter = QtGui.QPainter(self);
-        painter.setPen(QtCore.Qt.blue);
-        painter.setFont(QtGui.QFont("Arial", 30));
+        #painter.setPen(QtCore.Qt.blue);
+        #painter.setFont(QtGui.QFont("Arial", 30));
         painter.drawText(self.rect(), QtCore.Qt.AlignCenter, "Qt");
         
         self.image.fill(QtGui.qRgb(255, 255, 255))
@@ -167,7 +164,7 @@ class Sternchen(QtGui.QMainWindow):
         #self.createMenus()
         
 
-        self.setWindowTitle("Scribble")
+        self.setWindowTitle("PyQT Test")
         self.resize(500, 500)
         self.button = QtGui.QPushButton("Hello World",self)
         self.button.show()
